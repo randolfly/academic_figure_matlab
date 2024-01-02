@@ -68,7 +68,7 @@ classdef APlot < handle
 
         function CalculateFigureSize(obj)
             obj.FigWidth = obj.FigColNum * obj.FigureConfig.SingleFigureWidth;
-            obj.FigHeight = obj.FigWidth * obj.FigureConfig.HeightWidthRatio;
+            obj.FigHeight = obj.FigRowNum * obj.FigureConfig.SingleFigureWidth * obj.FigureConfig.HeightWidthRatio;
         end
 
         function ExportFigure(obj, figureName, figurePath, isPublication)
@@ -77,22 +77,22 @@ classdef APlot < handle
                 obj
                 figureName string {mustBeNonzeroLengthText}
                 figurePath string {mustBeNonzeroLengthText} = "D:\tmp\desktop\tmp"
-                isPublication = false % true: Automatically Export pdf and eps
+                isPublication = false % true: Automatically Export jpg and eps
             end
 
             time = string(datetime('now', 'TimeZone', 'Asia/Seoul', 'Format', 'yyyyMMdd'));
             fileName = figureName + "_" + time;
 
             if isPublication
-                dirPdfPath = fullfile(figurePath, 'pdf');
+                % dirPdfPath = fullfile(figurePath, 'pdf');
                 dirJpgPath = fullfile(figurePath, 'jpg');
                 dirEpsPath = fullfile(figurePath, 'eps');
 
-                filePdfPath = checkExportDirExist(dirPdfPath, fileName);
+                % filePdfPath = checkExportDirExist(dirPdfPath, fileName);
                 fileJpgPath = checkExportDirExist(dirJpgPath, fileName);
                 fileEpsPath = checkExportDirExist(dirEpsPath, fileName);
 
-                print(filePdfPath, '-dpdf');
+                % print(filePdfPath, '-dpdf');
                 print(fileJpgPath, '-djpeg', '-r600');
                 print(fileEpsPath, '-depsc2', '-r600');
             else

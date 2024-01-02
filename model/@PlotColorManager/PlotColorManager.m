@@ -1,44 +1,49 @@
 classdef PlotColorManager
     
     properties (Access = public)
-        ColorDictionary;
         ColorList;
         ColorMapOrder (:,3) {mustBeReal};
+    end
+
+    properties (Constant)
+        ColorDictionary = PlotColorManager.GetColorDictionary();
     end
     
     methods
         function obj = PlotColorManager()
-            obj.ColorDictionary = containers.Map;
-            % obj.ColorDictionary("red") = "#FA7F6F";
-            % obj.ColorDictionary("green") = "#8ECFC9";
-            % obj.ColorDictionary("blue") = "#82B0D2";
-            % obj.ColorDictionary("yellow") = "#FFBE7A";
-            % obj.ColorDictionary("purple") = "#BEB8DC";
-            % obj.ColorDictionary("white") = "#E7DAD2";
-            % obj.ColorDictionary("black") = "#999999";
-            
-            obj.ColorDictionary("red") = "#D8383A";
-            obj.ColorDictionary("blue") = "#2F7FC1";
-            obj.ColorDictionary("green") = "#96C37D";
-            obj.ColorDictionary("yellow") = "#F3D266";
-            obj.ColorDictionary("purple") = "#C497B2";
-            obj.ColorDictionary("white") = "#F8F3F9";
-            
-            
+            % specify plot color order
             obj.ColorList = [
-                obj.ColorDictionary("red");
-                obj.ColorDictionary("blue");
-                obj.ColorDictionary("green");
-                obj.ColorDictionary("yellow");
-                obj.ColorDictionary("purple");
-                ];
-            
+                PlotColorManager.ColorDictionary("red");
+                PlotColorManager.ColorDictionary("blue");
+                PlotColorManager.ColorDictionary("green");
+                PlotColorManager.ColorDictionary("yellow");
+                PlotColorManager.ColorDictionary("purple");
+                PlotColorManager.ColorDictionary("black");
+            ];
             obj.ColorMapOrder = PlotColorManager.Hex2ColorMap(obj.ColorList);
         end
         
     end
     
     methods(Static)
+        function ColorDictionary = GetColorDictionary()
+                ColorDictionary = containers.Map;
+%                 ColorDictionary("red") = "#FA7F6F";
+%                 ColorDictionary("green") = "#8ECFC9";
+%                 ColorDictionary("blue") = "#82B0D2";
+%                 ColorDictionary("yellow") = "#FFBE7A";
+%                 ColorDictionary("purple") = "#BEB8DC";
+%                 ColorDictionary("white") = "#E7DAD2";
+%                 ColorDictionary("black") = "#999999";
+                ColorDictionary("red") = "#D8383A";
+                ColorDictionary("blue") = "#2F7FC1";
+                ColorDictionary("green") = "#96C37D";
+                ColorDictionary("yellow") = "#F3D266";
+                ColorDictionary("purple") = "#C497B2";
+                ColorDictionary("white") = "#F8F3F9";
+                ColorDictionary("black") = "#999999";
+        end
+
         function rgbValues = Hex2ColorMap(hexCodes)
             % Remove '#' from hex codes
             hexCodes = replace(hexCodes, '#', '');

@@ -19,7 +19,7 @@ classdef BaseFigureConfig < handle
         LineWidth {mustBeReal} = 1.5;   % linewidth
     end
     
-    properties (Access = private, Constant)
+    properties (Constant)
         ConfigFolderPath {mustBeText} = BaseFigureConfig.GetConfigPath();
         DefaultConfig {mustBeText} = "springer_sample_conifg.json";
     end
