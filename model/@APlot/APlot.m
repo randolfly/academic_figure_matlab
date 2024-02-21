@@ -17,7 +17,7 @@ classdef APlot < handle
         AxesDict containers.Map; % axes dict object
     end
 
-    properties (Access = private)
+    properties (Access = public)
         Figure % plot figure instance
         FigWidth {mustBeReal}; % calculated figure
         FigHeight {mustBeReal}; % calculated figure
